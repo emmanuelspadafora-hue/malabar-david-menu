@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Málabar Café · Menú</title>
+<meta name="description" content="Menú de Málabar Café — Come hungry, leave happy">
+<meta name="theme-color" content="#1c1c1e">
+<link rel="icon" href="img/logo-white.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6efe1; --surface: #ffffff; --line: #e8e1d3; --ink: #1c1c1e;
+    --text: #1f1d1a; --muted: #6b655b;
+    --orange: #e98e12; --green: #2f9e3f; --blue: #1f8fd8; --red: #d93a35; --purple: #7446c4;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body { background: var(--bg) url(img/paper.jpg) 0 0 / 340px; color: var(--text); font: 15px/1.5 "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .c-orange { --c: var(--orange); } .c-green { --c: var(--green); } .c-blue { --c: var(--blue); }
+  .c-red { --c: var(--red); } .c-purple { --c: var(--purple); }
+
+  /* Cabecera: arte del vaso con su logo, nombre y onda de colores hacia el menú */
+  .hero { position: relative; background: var(--ink); color: #fff; padding-bottom: 54px; overflow: hidden; }
+  .hero-in { max-width: 1040px; margin: 0 auto; text-align: center; }
+  .art { height: 290px; background: url(img/header-art.jpg) 40% 50% / cover;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 98%); mask-image: linear-gradient(to bottom, #000 62%, transparent 98%); }
+  .brand { position: relative; margin-top: -26px; padding: 0 20px; }
+  .kicker { display: inline-block; font: 600 11px "Fredoka", sans-serif; letter-spacing: .32em; text-transform: uppercase;
+    color: var(--orange); border: 1.5px solid currentColor; border-radius: 999px; padding: 4px 10px 4px 14px; }
+  .brand h1 { font: 700 34px/1.05 "Fredoka", sans-serif; letter-spacing: .06em; margin-top: 12px; }
+  #tagline { color: #d8d2c6; font-size: 15px; margin-top: 6px; }
+  .dots { display: flex; gap: 7px; justify-content: center; margin-top: 14px; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+  .wave { position: absolute; left: 0; bottom: 0; width: 100%; height: 46px; display: block; }
+  /* La onda recorta la cabecera (máscara) para que se vea el papel debajo */
+  .hero { --w: 46px; -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--w) + 1px) no-repeat, url(img/wave-bottom.svg) bottom / 100% var(--w) no-repeat;
+    mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--w) + 1px) no-repeat, url(img/wave-bottom.svg) bottom / 100% var(--w) no-repeat; }
+  #lang { position: absolute; z-index: 2; top: max(12px, env(safe-area-inset-top)); right: 12px; font: 600 12px "Fredoka", sans-serif;
+    letter-spacing: .08em; color: #fff; background: rgba(28,28,30,.7); border: 1.5px solid rgba(255,255,255,.45);
+    border-radius: 999px; padding: 6px 13px; cursor: pointer; backdrop-filter: blur(6px); }
+  @media (min-width: 760px) {
+    .hero { padding-bottom: 64px; }
+    .hero-in { display: flex; align-items: center; text-align: left; }
+    .art { flex: none; width: 560px; height: 341px;
+      -webkit-mask-image: linear-gradient(to right, #000 58%, transparent 96%); mask-image: linear-gradient(to right, #000 58%, transparent 96%); }
+    .brand { margin: 0 0 0 -10px; padding: 0 24px; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+    .brand h1 { font-size: 48px; } #tagline { font-size: 17px; } .dots { justify-content: flex-start; }
+    .wave { height: 60px; } .hero { --w: 60px; }
+  }
+
+  nav { position: sticky; top: 0; z-index: 5; background: rgba(246,239,225,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  #tabs { display: flex; gap: 22px; overflow-x: auto; padding: 0 16px; scrollbar-width: none; max-width: 860px; margin: 0 auto; }
+  #tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: none; color: var(--muted); text-decoration: none; font: 500 15px "Fredoka", sans-serif; padding: 14px 0 11px;
+    border-bottom: 3px solid transparent; white-space: nowrap; transition: .2s; }
+  .tab.on { color: var(--text); border-color: var(--c); }
+
+  main { max-width: 860px; margin: 0 auto; padding: 4px 16px 40px; }
+  .sec { padding-top: 34px; }
+  h2 { font: 700 25px/1.15 "Fredoka", sans-serif; border-left: 5px solid var(--c); padding-left: 12px; margin-bottom: 6px; }
+  .squiggle { display: none; }
+  @media (min-width: 680px) { h2 { font-size: 30px; } }
+  .dish { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .dish:last-child { border-bottom: 0; }
+  @media (min-width: 680px) { .dish { grid-template-columns: 200px 1fr; gap: 22px; } }
+  .ph { display: block; width: 100%; padding: 0; border: 0; background: #ddd; cursor: zoom-in; aspect-ratio: 1; border-radius: 14px; overflow: hidden; }
+  @media (min-width: 680px) { .ph { aspect-ratio: 4 / 3; } }
+  .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  h3 { font: 600 18px/1.25 "Fredoka", sans-serif; }
+  .price { font: 600 17px "Fredoka", sans-serif; white-space: nowrap; }
+  .txt p { color: var(--muted); margin-top: 4px; font-size: 14.5px; }
+
+  footer { background: var(--ink); color: #cfc9bd; text-align: center; padding: 30px 16px 44px; }
+  footer img { width: 72px; height: auto; display: block; margin: 0 auto 12px; }
+  footer a { color: #fff; text-decoration: none; font: 600 16px "Fredoka", sans-serif; }
+
+  #lb { position: fixed; inset: 0; z-index: 20; background: rgba(20,19,17,.92); display: none; place-items: center; padding: 16px; cursor: zoom-out; color: #fff; }
+  #lb.open { display: grid; }
+  #lb img { max-width: 100%; max-height: 80vh; border-radius: 14px; }
+  #lb-cap { margin-top: 12px; text-align: center; font: 600 18px "Fredoka", sans-serif; }
+
+  /* Impresión / PDF */
+  @media print {
+    @page { size: A4; margin: 12mm 0 10mm; }
+    @page :first { margin-top: 0; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    nav, #lang, #lb, footer { display: none !important; }
+    .art { width: 430px !important; height: 262px !important; }
+    .brand h1 { font-size: 40px !important; }
+    h2 { break-after: avoid; }
+    .dish { break-inside: avoid; }
+    main { padding: 0 28px; }
+    .sec { padding-top: 22px; }
+    .ig { display: block !important; }
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <button id="lang" type="button">EN</button>
+    <div class="hero-in">
+      <div class="art" role="img" aria-label="Málabar Café"></div>
+      <div class="brand">
+        <span class="kicker" id="menuLabel">Menú</span>
+        <h1>MÁLABAR CAFÉ</h1>
+        <p id="tagline"></p>
+        <p class="ig" style="display:none;color:#d8d2c6;font-size:14px;margin-top:10px">Instagram @malabarpanama</p>
+        <div class="dots" aria-hidden="true"><i class="c-orange"></i><i class="c-green"></i><i class="c-blue"></i><i class="c-red"></i><i class="c-purple"></i></div>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 22 C120 2 240 42 360 22 S600 2 720 22 960 42 1080 22 1320 2 1440 22" fill="none" stroke="#f7a128" stroke-width="3"/>
+    </svg>
+  </header>
+  <nav><div id="tabs"></div></nav>
+  <main id="menu"></main>
+  <footer>
+    <img src="img/logo-white.png" alt="" width="534" height="463">
+    <p id="follow"></p>
+    <a href="https://instagram.com/malabarpanama" target="_blank" rel="noopener">@malabarpanama</a>
+  </footer>
+  <div id="lb" role="dialog" aria-modal="true"><figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure></div>
+  <script src="menu.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

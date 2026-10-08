@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Málabar Café · Menú PDF</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  /* Versión para imprimir: páginas A4 fijas, generadas desde menu.js */
+  @page { size: A4; margin: 0; }
+  :root { --ink: #1c1c1e; --paper: #faf6ee; --line: #e6ddcc; --text: #1f1d1a; --muted: #6b655b;
+    --orange: #e98e12; --green: #2f9e3f; --blue: #1f8fd8; --red: #d93a35; --purple: #7446c4; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: #888; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "DM Sans", sans-serif; color: var(--text); }
+  @media print { html, body { background: none; } .page { margin: 0 !important; box-shadow: none !important; } }
+  .c-orange { --c: var(--orange); } .c-green { --c: var(--green); } .c-blue { --c: var(--blue); }
+  .c-red { --c: var(--red); } .c-purple { --c: var(--purple); }
+
+  .page { width: 210mm; height: 297mm; overflow: hidden; background: var(--paper) url(img/paper.jpg) 0 0 / 90mm; margin: 10mm auto; position: relative;
+    display: flex; flex-direction: column; break-after: page; box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+  .page:last-child { break-after: auto; }
+
+  /* Bandas negras con el arte del vaso */
+  .band { position: relative; background: var(--ink); color: #fff; flex: none; display: flex; align-items: center; overflow: hidden; }
+  .band .art { position: absolute; top: 0; bottom: 0; left: 0; background: url(img/header-art.jpg) left 40% / cover; }
+  .band .art::after { content: ""; position: absolute; inset: 0 -1px 0 0; background: linear-gradient(to right, rgba(28,28,30,0) 55%, var(--ink)); }
+  .band .txt { position: relative; }
+  .wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; display: block; }
+
+  .hero { height: 86mm; padding-bottom: 10mm; }
+  .hero .art { width: 118mm; }
+  .hero .txt { margin-left: 112mm; }
+  .kicker { display: inline-block; font: 600 8pt "Fredoka"; letter-spacing: .32em; text-transform: uppercase; color: #f7a128;
+    border: 1.2px solid currentColor; border-radius: 99px; padding: 1.2mm 3mm 1.2mm 4mm; }
+  .hero h1 { font: 700 30pt/1 "Fredoka"; letter-spacing: .04em; margin-top: 4mm; white-space: nowrap; }
+  .tag { color: #d8d2c6; font-size: 11pt; margin-top: 2mm; }
+  .dots { display: flex; gap: 2mm; margin-top: 4mm; }
+  .dots i { width: 2.4mm; height: 2.4mm; border-radius: 50%; background: var(--c); }
+  .hero .wave { height: 12mm; }
+
+  .mini { height: 36mm; padding-bottom: 7mm; }
+  .mini .art { width: 70mm; background-position: left 70%; }
+  .mini .txt { margin-left: 66mm; display: flex; align-items: baseline; gap: 5mm; }
+  .mini h1 { font: 700 17pt "Fredoka"; letter-spacing: .05em; }
+  .mini .tag { margin: 0; font-size: 9.5pt; }
+  .mini .wave { height: 8mm; }
+
+  /* Contenido */
+  .body { flex: 1; padding: 6mm 14mm 0; display: flex; flex-direction: column; }
+  .sec { margin-top: 5mm; }
+  .sec h2 { font: 700 17pt/1.1 "Fredoka"; border-left: 1.6mm solid var(--c); padding-left: 3mm; margin-bottom: 3mm; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8mm; }
+  .dish { display: grid; grid-template-columns: 31mm 1fr; gap: 4mm; align-items: start; padding: 3.2mm 0; border-bottom: .3mm solid var(--line); }
+  .dish img { width: 31mm; height: 31mm; object-fit: cover; border-radius: 2.5mm; display: block; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; }
+  .dish h3 { font: 600 11pt/1.2 "Fredoka"; }
+  .price { font: 700 11pt "Fredoka"; color: var(--c); white-space: nowrap; }
+  .dish p { color: var(--muted); font-size: 8.4pt; line-height: 1.42; margin-top: 1.2mm; }
+
+  .foot { flex: none; display: flex; justify-content: space-between; padding: 4mm 14mm 6mm; font: 500 8.5pt "Fredoka"; color: var(--muted); }
+
+  /* Cierre de la última página */
+  .closing { margin-top: 8mm; flex: 1; min-height: 80mm; flex-direction: column; justify-content: flex-end; text-align: center; padding-bottom: 12mm; }
+  .closing .art { right: 0; top: 9mm; background-size: 100% auto; background-position: center 0; }
+  .closing .art::after { background: linear-gradient(to bottom, rgba(28,28,30,0) 55%, var(--ink) 82%); }
+  .closing .txt { margin: 0; }
+  .closing .big { font: 700 22pt/1.1 "Fredoka"; }
+  .closing .big br { display: none; }
+  .closing .wave { z-index: 1; }
+  .closing .ig { font: 600 12pt "Fredoka"; color: #f7a128; margin-top: 3mm; }
+  .wave.top { top: 0; bottom: auto; height: 10mm; }
+  /* La onda recorta la banda negra (máscara) para que se vea el papel debajo */
+  .hero { --w: 12mm; } .mini { --w: 8mm; }
+  .hero, .mini { -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--w) + 1px) no-repeat, url(img/wave-bottom.svg) bottom / 100% var(--w) no-repeat; }
+  .closing { -webkit-mask: linear-gradient(#000 0 0) bottom / 100% calc(100% - 10mm + 1px) no-repeat, url(img/wave-top.svg) top / 100% 10mm no-repeat; }
+  /* Clásicos destacados: tarjetas con foto grande */
+  .feature .grid { grid-template-columns: 1fr 1fr 1fr; column-gap: 6mm; }
+  .feature .dish { grid-template-columns: 1fr; align-content: start; gap: 3mm; border: 0; padding: 0; }
+  .feature .dish img { width: 100%; height: 44mm; border-radius: 3mm; }
+  .feature .dish p { font-size: 8.6pt; }
+  .p3 .body { flex: none; }
+</style>
+</head>
+<body>
+<div id="doc"></div>
+<script src="menu.js"></script>
+<script>
+(function () {
+  const M = window.MENU;
+  const q = new URLSearchParams(location.search);
+  const lang = q.get("lang") === "en" ? "en" : "es";
+  document.documentElement.lang = lang;
+  const T = { es: { menu: "Menú", page: "Página", follow: "Síguenos en Instagram", bye: "Come hungry, leave happy" },
+              en: { menu: "Menu", page: "Page", follow: "Follow us on Instagram", bye: "Come hungry, leave happy" } }[lang];
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const sec = (id) => M.sections.find((s) => s.id === id);
+  const dots = `<div class="dots"><i class="c-orange"></i><i class="c-green"></i><i class="c-blue"></i><i class="c-red"></i><i class="c-purple"></i></div>`;
+  const W = "C120 2 240 42 360 22 S600 2 720 22 960 42 1080 22 1320 2 1440 22";
+  const wave = `<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 22 ${W}" fill="none" stroke="#f7a128" stroke-width="4"/></svg>`;
+  const waveTop = `<svg class="wave top" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 38 C120 58 240 18 360 38 S600 58 720 38 960 18 1080 38 1320 58 1440 38" fill="none" stroke="#f7a128" stroke-width="4"/></svg>`;
+  const price = (p) => (p == null ? "" : `<span class="price">${M.currency}${Number(p).toFixed(2)}</span>`);
+
+  const section = (id) => { const s = sec(id); return `
+    <section class="sec c-${s.color}${id === "clasicos" ? " feature" : ""}"><h2>${esc(s.name[lang])}</h2><div class="grid">
+      ${s.items.map((it) => `<article class="dish"><img src="img/${it.img}.jpg" alt="">
+        <div><div class="row"><h3>${esc(it.name[lang])}</h3>${price(it.price)}</div><p>${esc(it.desc[lang])}</p></div></article>`).join("")}
+    </div></section>`; };
+  const hero = `<header class="band hero"><div class="art"></div><div class="txt">
+      <span class="kicker">${T.menu}</span><h1>MÁLABAR CAFÉ</h1><p class="tag">${esc(M.tagline[lang])}</p>${dots}</div>${wave}</header>`;
+  const mini = `<header class="band mini"><div class="art"></div><div class="txt"><h1>MÁLABAR CAFÉ</h1><p class="tag">${esc(M.tagline[lang])}</p></div>${wave}</header>`;
+  const closing = `<footer class="band closing"><div class="art"></div>${waveTop}<div class="txt">
+      <p class="big">${T.bye}</p><p class="ig">@malabarpanama</p>
+      <p class="tag" style="font-size:9pt">${T.follow}</p></div></footer>`;
+  const foot = (n, total) => `<div class="foot"><span>@malabarpanama</span><span>${n} / ${total}</span></div>`;
+
+  const plan = [[hero, ["pancakes", "bowls"]], [mini, ["tostadas", "sandwiches"]], [mini, ["clasicos"], closing]];
+  document.getElementById("doc").innerHTML = plan.map(([head, ids, end], i) => `
+    <div class="page p${i + 1}">${head}<div class="body">${ids.map(section).join("")}</div>${end || foot(i + 1, plan.length)}</div>`).join("");
+
+  // Avisa en consola si alguna página se desborda
+  window.overflow = [...document.querySelectorAll(".page")].map((p) => p.scrollHeight - p.clientHeight);
+})();
+</script>
+</body>
+</html>
