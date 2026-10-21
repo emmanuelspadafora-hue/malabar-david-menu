@@ -4,6 +4,24 @@ window.MENU = {
   tagline: { es: "Come hungry, leave happy", en: "Come hungry, leave happy" },
   sections: [
     {
+      id: "clasicos", color: "purple",
+      name: { es: "Clásicos", en: "Classics" },
+      items: [
+        { img: "sabores-panama", price: 7.50, name: { es: "Sabores de Panamá", en: "Flavors of Panama" },
+          desc: { es: "Dos hojaldras doradas, huevos al gusto y salchichitas guisadas en salsa criolla.",
+                  en: "Two golden hojaldras (Panamanian fry bread), eggs your way and sausages stewed in creole sauce." } },
+        { img: "panama-classic", price: 7.50, name: { es: "Panamá Classic", en: "Panama Classic" },
+          desc: { es: "Dos tortillas de maíz con queso amarillo fundido, huevo frito, cebolla morada encurtida y microgreens, acompañadas de carne guisada encebollada.",
+                  en: "Two corn tortillas with melted American cheese, fried egg, pickled red onion and microgreens, served with stewed beef and onions." } },
+        { img: "panama-encebollado", price: 8.75, name: { es: "Panamá Encebollado", en: "Panamá Encebollado" },
+          desc: { es: "Dos tortillas de maíz hechas en casa con queso cheddar fundido, acompañadas de bistec de carne magra encebollado con pimentones condimentados y tomate fresco.",
+                  en: "Two homemade corn tortillas with melted cheddar cheese, served with a lean beef steak smothered in onions and seasoned bell peppers, plus fresh tomato." } },
+        { img: "huevos-rancheros", price: 7.50, name: { es: "Huevos Rancheros", en: "Huevos Rancheros" },
+          desc: { es: "Huevos cocinados en salsa de tomate especiada, terminados con microgreens y acompañados de tostadas de masa madre.",
+                  en: "Eggs cooked in spiced tomato sauce, finished with microgreens and served with sourdough toast." } }
+      ]
+    },
+    {
       id: "pancakes", color: "orange",
       name: { es: "Pancakes & French Toasts", en: "Pancakes & French Toasts" },
       items: [
@@ -67,21 +85,6 @@ window.MENU = {
         { img: "morning-burger", price: 7.50, name: { es: "Morning Burger", en: "Morning Burger" },
           desc: { es: "Pan artesanal con huevos revueltos, bacon crujiente, queso amarillo fundido, tomate, lechuga y salsa de la casa, coronado con microgreens.",
                   en: "Artisan bun with scrambled eggs, crispy bacon, melted American cheese, tomato, lettuce and house sauce, topped with microgreens." } }
-      ]
-    },
-    {
-      id: "clasicos", color: "purple",
-      name: { es: "Clásicos", en: "Classics" },
-      items: [
-        { img: "sabores-panama", price: 7.50, name: { es: "Sabores de Panamá", en: "Flavors of Panama" },
-          desc: { es: "Dos hojaldras doradas, huevos al gusto y salchichitas guisadas en salsa criolla.",
-                  en: "Two golden hojaldras (Panamanian fry bread), eggs your way and sausages stewed in creole sauce." } },
-        { img: "panama-classic", price: 7.50, name: { es: "Panamá Classic", en: "Panama Classic" },
-          desc: { es: "Dos tortillas de maíz con queso amarillo fundido, huevo frito, cebolla morada encurtida y microgreens, acompañadas de carne guisada encebollada.",
-                  en: "Two corn tortillas with melted American cheese, fried egg, pickled red onion and microgreens, served with stewed beef and onions." } },
-        { img: "huevos-rancheros", price: 7.50, name: { es: "Huevos Rancheros", en: "Huevos Rancheros" },
-          desc: { es: "Huevos cocinados en salsa de tomate especiada, terminados con microgreens y acompañados de tostadas de masa madre.",
-                  en: "Eggs cooked in spiced tomato sauce, finished with microgreens and served with sourdough toast." } }
       ]
     }
   ]

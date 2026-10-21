@@ -61,12 +61,11 @@
   .foot { flex: none; display: flex; justify-content: space-between; padding: 4mm 14mm 6mm; font: 500 8.5pt "Fredoka"; color: var(--muted); }
 
   /* Cierre de la última página */
-  .closing { margin-top: 8mm; flex: 1; min-height: 80mm; flex-direction: column; justify-content: flex-end; text-align: center; padding-bottom: 12mm; }
-  .closing .art { right: 0; top: 9mm; background-size: 100% auto; background-position: center 0; }
-  .closing .art::after { background: linear-gradient(to bottom, rgba(28,28,30,0) 55%, var(--ink) 82%); }
-  .closing .txt { margin: 0; }
-  .closing .big { font: 700 22pt/1.1 "Fredoka"; }
-  .closing .big br { display: none; }
+  .closing { margin-top: 8mm; flex: 1; min-height: 60mm; align-items: center; padding-top: 10mm; }
+  .closing .art { top: 9mm; width: 120mm; background-size: cover; background-position: left 45%; }
+  .closing .art::after { background: linear-gradient(to right, rgba(28,28,30,0) 55%, var(--ink)); }
+  .closing .txt { margin-left: 112mm; padding-right: 10mm; }
+  .closing .big { font: 700 20pt/1.15 "Fredoka"; }
   .closing .wave { z-index: 1; }
   .closing .ig { font: 600 12pt "Fredoka"; color: #f7a128; margin-top: 3mm; }
   .wave.top { top: 0; bottom: auto; height: 10mm; }
@@ -75,11 +74,48 @@
   .hero, .mini { -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--w) + 1px) no-repeat, url(img/wave-bottom.svg) bottom / 100% var(--w) no-repeat; }
   .closing { -webkit-mask: linear-gradient(#000 0 0) bottom / 100% calc(100% - 10mm + 1px) no-repeat, url(img/wave-top.svg) top / 100% 10mm no-repeat; }
   /* Clásicos destacados: tarjetas con foto grande */
-  .feature .grid { grid-template-columns: 1fr 1fr 1fr; column-gap: 6mm; }
+  .feature .grid { grid-template-columns: 1fr 1fr; column-gap: 8mm; row-gap: 5mm; }
   .feature .dish { grid-template-columns: 1fr; align-content: start; gap: 3mm; border: 0; padding: 0; }
-  .feature .dish img { width: 100%; height: 44mm; border-radius: 3mm; }
+  .feature .dish img { width: 100%; height: 40mm; border-radius: 3mm; }
   .feature .dish p { font-size: 8.6pt; }
-  .p3 .body { flex: none; }
+  /* Una hoja, dos caras: filas más compactas */
+  .hero { height: 54mm; padding-bottom: 8mm; } .hero .art { width: 92mm; background-position: left 42%; } .hero .txt { margin-left: 90mm; }
+  .hero h1 { font-size: 27pt; } .hero .wave { height: 10mm; } .hero { --w: 10mm; }
+  .body { padding: 3mm 12mm 0; }
+  .sec { margin-top: 2.5mm; }
+  .sec h2 { font-size: 14.5pt; margin-bottom: 1.5mm; }
+  .grid { column-gap: 7mm; }
+  .dish { grid-template-columns: 23mm 1fr; gap: 3.2mm; padding: 1.9mm 0; }
+  .dish img { width: 23mm; height: 23mm; border-radius: 2mm; }
+  .dish h3 { font-size: 10pt; } .price { font-size: 10pt; }
+  .dish p { font-size: 7.7pt; line-height: 1.36; margin-top: .8mm; }
+  .foot { padding: 3mm 12mm 5mm; }
+  .feature .grid { row-gap: 4mm; } .feature .dish img { height: 36mm; } .feature .dish p { font-size: 8pt; }
+  .closing { margin-top: 6mm; min-height: 44mm; }
+  .p2 .body { flex: none; }
+  /* v3: bandas bajas arriba y abajo, platos destacados en tarjetas */
+  .mini { height: 30mm; padding-bottom: 6mm; } .mini .wave { height: 7mm; } .mini { --w: 7mm; }
+  .closing { flex: none; margin-top: auto; min-height: 0; height: 30mm; padding-top: 7mm; }
+  .closing .art { top: 7mm; width: 70mm; background-position: left 55%; }
+  .closing .txt { margin-left: 66mm; display: flex; align-items: baseline; gap: 5mm; }
+  .closing .big { font: 700 15pt "Fredoka"; } .closing .ig { margin: 0; font-size: 9.5pt; }
+  .wave.top { height: 7mm; }
+  .closing { -webkit-mask: linear-gradient(#000 0 0) bottom / 100% calc(100% - 7mm + 1px) no-repeat, url(img/wave-top.svg) top / 100% 7mm no-repeat; }
+  .grid.feature { column-gap: 6mm; row-gap: 4mm; margin-bottom: 2mm; }
+  /* Tarjeta grande: foto completa 4:3 (sin recorte) y texto al lado */
+  .grid.feature .dish { grid-template-columns: 57mm 1fr; align-items: start; gap: 3mm; border: 0; padding: 0 0 2mm; }
+  .grid.feature .dish img { width: 57mm; height: 42.75mm; border-radius: 2.5mm; }
+  .grid.feature .row { flex-direction: column; align-items: flex-start; gap: .5mm; }
+  .grid.feature .dish p { font-size: 7.8pt; }
+  .p2 .body { flex: 1; }
+  .p2 .sec { margin-top: 2mm; }
+  /* Modo imprenta (?print=1): A4 + 3 mm de sangrado por lado; fondos llegan al borde, contenido dentro de la zona segura */
+  html.print .page { width: 216mm; height: 303mm; }
+  html.print .mini { height: 33mm; padding-top: 3mm; }
+  html.print .mini .art { width: 73mm; }
+  html.print .mini .txt { margin-left: 69mm; }
+  html.print .body { padding-left: 15mm; padding-right: 15mm; }
+  html.print .foot { padding: 3mm 15mm 8mm; }
 </style>
 </head>
 <body>
@@ -91,8 +127,9 @@
   const q = new URLSearchParams(location.search);
   const lang = q.get("lang") === "en" ? "en" : "es";
   document.documentElement.lang = lang;
-  const T = { es: { menu: "Menú", page: "Página", follow: "Síguenos en Instagram", bye: "Come hungry, leave happy" },
-              en: { menu: "Menu", page: "Page", follow: "Follow us on Instagram", bye: "Come hungry, leave happy" } }[lang];
+  if (q.get("print") === "1") { document.documentElement.classList.add("print"); document.head.insertAdjacentHTML("beforeend", "<style>@page { size: 216mm 303mm; margin: 0; }</style>"); }
+  const T = { es: { menu: "Menú", page: "Página", follow: "Síguenos en Instagram", bye: "Come hungry,<br>leave happy" },
+              en: { menu: "Menu", page: "Page", follow: "Follow us on Instagram", bye: "Come hungry,<br>leave happy" } }[lang];
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const sec = (id) => M.sections.find((s) => s.id === id);
   const dots = `<div class="dots"><i class="c-orange"></i><i class="c-green"></i><i class="c-blue"></i><i class="c-red"></i><i class="c-purple"></i></div>`;
@@ -101,20 +138,25 @@
   const waveTop = `<svg class="wave top" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 38 C120 58 240 18 360 38 S600 58 720 38 960 18 1080 38 1320 58 1440 38" fill="none" stroke="#f7a128" stroke-width="4"/></svg>`;
   const price = (p) => (p == null ? "" : `<span class="price">${M.currency}${Number(p).toFixed(2)}</span>`);
 
-  const section = (id) => { const s = sec(id); return `
-    <section class="sec c-${s.color}${id === "clasicos" ? " feature" : ""}"><h2>${esc(s.name[lang])}</h2><div class="grid">
-      ${s.items.map((it) => `<article class="dish"><img src="img/${it.img}.jpg" alt="">
-        <div><div class="row"><h3>${esc(it.name[lang])}</h3>${price(it.price)}</div><p>${esc(it.desc[lang])}</p></div></article>`).join("")}
-    </div></section>`; };
+  // Platos con foto grande en el impreso (Clásicos: todos)
+  const BIG = new Set(["creme-brulee", "blueberry-vanilla", "loaded-avocado", "mediterranea", "morning-burger", "chicken-wrap"]);
+  const dish = (it) => `<article class="dish"><img src="img/${it.img}.jpg" alt="">
+        <div><div class="row"><h3>${esc(it.name[lang])}</h3>${price(it.price)}</div><p>${esc(it.desc[lang])}</p></div></article>`;
+  const section = (id) => { const s = sec(id);
+    const big = s.items.filter((it) => id === "clasicos" || BIG.has(it.img)), rest = s.items.filter((it) => !big.includes(it));
+    return `
+    <section class="sec c-${s.color}"><h2>${esc(s.name[lang])}</h2>
+      ${big.length ? `<div class="grid feature">${big.map(dish).join("")}</div>` : ""}
+      ${rest.length ? `<div class="grid">${rest.map(dish).join("")}</div>` : ""}
+    </section>`; };
   const hero = `<header class="band hero"><div class="art"></div><div class="txt">
       <span class="kicker">${T.menu}</span><h1>MÁLABAR CAFÉ</h1><p class="tag">${esc(M.tagline[lang])}</p>${dots}</div>${wave}</header>`;
   const mini = `<header class="band mini"><div class="art"></div><div class="txt"><h1>MÁLABAR CAFÉ</h1><p class="tag">${esc(M.tagline[lang])}</p></div>${wave}</header>`;
   const closing = `<footer class="band closing"><div class="art"></div>${waveTop}<div class="txt">
-      <p class="big">${T.bye}</p><p class="ig">@malabarpanama</p>
-      <p class="tag" style="font-size:9pt">${T.follow}</p></div></footer>`;
+      <p class="big">${T.bye.replace("<br>", " ")}</p><p class="ig">@malabarpanama · ${T.follow}</p></div></footer>`;
   const foot = (n, total) => `<div class="foot"><span>@malabarpanama</span><span>${n} / ${total}</span></div>`;
 
-  const plan = [[hero, ["pancakes", "bowls"]], [mini, ["tostadas", "sandwiches"]], [mini, ["clasicos"], closing]];
+  const plan = [[mini, ["clasicos", "pancakes"]], [mini, ["bowls", "tostadas", "sandwiches"]]];
   document.getElementById("doc").innerHTML = plan.map(([head, ids, end], i) => `
     <div class="page p${i + 1}">${head}<div class="body">${ids.map(section).join("")}</div>${end || foot(i + 1, plan.length)}</div>`).join("");
 
